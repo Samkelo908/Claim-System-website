@@ -1,0 +1,188 @@
+﻿@model PROG6212.PART2.Models.ClaimModel
+
+<style>
+    .claim-form {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    @* W3schools.com.2000. *@
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .input-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+        .input-container input {
+            width: 100%;
+            padding-right: 40px; 
+        }
+
+    .icon {
+        position: absolute;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .calendar-icon {
+        background-image: url('/path/to/calendar-icon.png'); 
+        background-size: cover;
+    }
+
+    .reimbursement-icon {
+        background-image: url('/path/to/reimbursement-icon.png'); 
+        background-size: cover;
+    @* W3schools.com.2000. *@
+    }
+
+    .expenses-icon {
+        background-image: url('/path/to/expenses-icon.png'); 
+        background-size: cover;
+    }
+
+    .submit-btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+
+    .upload-form {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+    }
+
+        .upload-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        } @* W3schools.com.2000. *@
+
+        .upload-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .upload-form input[type="text"],
+        .upload-form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .upload-form input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+            .upload-form input[type="submit"]:hover {
+                background-color: #218838;
+            }
+</style> @* W3schools.com.2000. *@
+
+<form asp-action="Index1" method="post" enctype="multipart/form-data" class="claim-form">
+    <div class="form-group">
+        <label for="MonthlyRate">Monthly work hours:</label>
+        <input asp-for="MonthlyRate" type="number" class="form-control" placeholder="Enter your monthly work hours" /> @* W3schools.com.2000. *@
+    </div>
+
+    <div class="form-group">
+        <label for="Training">Training or Workshop Reimbursement:</label>
+        <input asp-for="Training" type="number" class="form-control" placeholder="Enter training reimbursement" /> @* W3schools.com.2000. *@
+    </div>
+
+    <div class="form-group">
+        <label for="MiscellaneousExpenses">Miscellaneous Expenses:</label>
+        <input asp-for="MiscellaneousExpenses" type="number" class="form-control" placeholder="Enter miscellaneous expenses" /> @* W3schools.com.2000. *@
+    </div>
+
+    <div class="form-group">
+        <label for="DateRangeStart">Date Range Start:</label>
+        <input asp-for="DateRangeStart" type="date" class="form-control" placeholder="Select start date" /> @* W3schools.com.2000. *@
+    </div>
+
+    <div class="form-group">
+        <label for="EndDate">End Date (Optional):</label>
+        <input asp-for="EndDate" type="date" class="form-control" placeholder="Select end date" /> @* W3schools.com.2000. *@
+    </div>
+
+    <div class="form-group">
+        <label for="PaymentMethod">Payment Method:</label>
+        @Html.DropDownListFor(model => model.PaymentMethod, new SelectList(new List<string>
+        {
+        "Bank Transfer",
+        "Cash",
+        "Credit Card",
+        "PayPal"
+        }), "Select Payment Method", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description:</label>
+        <textarea asp-for="Description" class="form-control" placeholder="Enter a description"></textarea> @* W3schools.com.2000. *@
+    </div>
+
+
+
+    <button type="submit" class="submit-btn">Submit Claim</button>
+</form>
+
+
+<div class="upload-form">
+    <h2>Upload Support Documents</h2>
+    @using (Html.BeginForm("Upload", "SubmitClaim", FormMethod.Post, new { enctype = "multipart/form-data" })) @* W3schools.com.2000. *@
+    {
+        <label for="uploaderName">Your Name</label>
+        <input type="text" name="uploaderName" required />
+
+        <label for="file">Select file:</label>
+        <input type="file" name="file" required />
+
+        <input type="submit" value="Upload" /> @* W3schools.com.2000. *@
+    }
+</div>
+
+@*  W3schools.com.2000. HTML styles Available at: https://www.w3schools.com/html/html_styles.asp (Accessed:5 October 2024).
+ *@
+@* @*  W3schools.com.2000. Asp.net web pages tutorial. Available at: https://w3schools.com/asp/webpages_intro.asp (Accessed:6 October 2024).
+ *@

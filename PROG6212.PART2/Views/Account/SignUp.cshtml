@@ -1,0 +1,36 @@
+﻿@model PROG6212.PART2.Models.User
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<h2>Sign Up</h2>
+
+<form asp-action="SignUp" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span> @* W3schools.com.2000. *@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span> @* W3schools.com.2000. *@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span> @* W3schools.com.2000. *@
+    </div>
+
+    
+
+    <button type="submit" class="btn btn-primary">Sign Up</button> @* W3schools.com.2000. *@
+</form>
+@* @*  W3schools.com.2000. Asp.net web pages tutorial. Available at: https://w3schools.com/asp/webpages_intro.asp (Accessed:5 October 2024).
+ *@
+
+@*  W3schools.com.2000. HTML styles Available at: https://www.w3schools.com/html/html_styles.asp (Accessed:6 October 2024).
+ *@

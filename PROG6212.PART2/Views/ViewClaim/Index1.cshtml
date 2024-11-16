@@ -1,0 +1,107 @@
+﻿@model List<PROG6212.PART2.Models.ViewClaimModel>
+
+<style> @* W3schools.com.2000. *@
+    .content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    @* W3schools.com.2000. *@
+    h2 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    @* W3schools.com.2000. *@
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    @* W3schools.com.2000. *@
+    th {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    @* W3schools.com.2000. *@
+
+    td {
+        color: #343a40;
+    }
+
+    .status {
+        font-weight: bold;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    @* W3schools.com.2000. *@
+    .status-pending {
+        background-color: #ffcc00;
+        color: #ffffff;
+    }
+
+    .status-rejected {
+        background-color: #ff4d4d;
+        color: #ffffff;
+    }
+    @* W3schools.com.2000. *@
+    .status-accepted {
+        background-color: #28a745;
+        color: #ffffff;
+    }
+</style>
+
+<div class="content"> @* W3schools.com.2000. *@
+    <h2>Your Claims</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Claimer ID</th>
+                <th>Total Amount</th>
+                <th>Miscellaneous Expenses</th>
+                <th>Payment Method</th>
+                <th>Submitted At</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model) @* W3schools.com.2000. *@
+            {
+                <tr>
+                    <td>@claim.ClaimID</td>
+                    <td>R @claim.MonthlyRate</td>
+                    <td>@claim.MiscellaneousExpenses</td>
+                    <td>@claim.PaymentMethod</td>
+                  
+                    <td>@claim.SubmittedAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <span class="status
+                            @(claim.Status == "Pending" ? "status-pending" :
+                            claim.Status == "Rejected" ? "status-rejected" :
+                            "status-accepted")">
+                            @claim.Status @* W3schools.com.2000. *@
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@*  W3schools.com.2000. HTML styles Available at: https://www.w3schools.com/html/html_styles.asp (Accessed:5 October 2024).
+ *@
+@* @*  W3schools.com.2000. Asp.net web pages tutorial. Available at: https://w3schools.com/asp/webpages_intro.asp (Accessed:6 October 2024).
+ *@

@@ -1,0 +1,73 @@
+﻿body {
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #343a40;
+    padding: 1rem;
+    padding-top: 80px; /* Add padding to the top to avoid overlap with the header */
+    height: 100vh; /* Full-height sidebar */
+    position: fixed; /* Fixes sidebar to the left */
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    border-right: 1px solid #dee2e6;
+    z-index: 1; /* Ensure it's on top of content */
+}
+
+.main-content {
+    margin-left: 200px; /* Offset content to the right of the sidebar */
+    padding: 20px;
+}
+
+header {
+    position: fixed; /* Fix the header */
+    width: calc(100% - 200px); /* Adjust header width to account for sidebar */
+    margin-left: 200px; /* Offset header to match sidebar */
+    top: 0;
+    z-index: 2; /* Ensure header is above the sidebar */
+}
+
+.sidebar nav a {
+    display: block;
+    padding: 15px;
+    color: #f8f9fa;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .sidebar nav a:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+
+    .sidebar nav a.active {
+        background-color: #007bff;
+        color: white;
+    }
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto; /* Allow sidebar to adjust */
+        padding-top: 0; /* Remove top padding for mobile */
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    header {
+        width: 100%;
+        margin-left: 0;
+    }
+}

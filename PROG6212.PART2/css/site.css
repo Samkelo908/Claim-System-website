@@ -1,0 +1,49 @@
+﻿
+.sidebar {
+    width: 200px;
+    background-color: #343a40; 
+    padding: 1rem;
+    height: 100vh; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    overflow-x: hidden; 
+    border-right: 1px solid #dee2e6; 
+}
+
+    
+    .sidebar nav a {
+        display: block;
+        padding: 15px;
+        color: #f8f9fa; 
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 10px; 
+        border-radius: 4px;
+        transition: background-color 0.3s ease, color 0.3s ease; 
+    }
+
+        
+        .sidebar nav a.active {
+            background-color: #007bff; 
+            color: white; 
+        }
+
+        
+        .sidebar nav a:hover {
+            background-color: #0056b3; 
+            color: white;
+        }
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%; 
+        position: relative;
+    }
+
+        .sidebar nav a {
+            text-align: center;
+        }
+}

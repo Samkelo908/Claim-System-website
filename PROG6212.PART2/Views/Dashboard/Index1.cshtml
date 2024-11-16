@@ -1,0 +1,154 @@
+﻿@model IEnumerable<PROG6212.PART2.Models.ViewClaimModel>
+
+
+<div class="dashboard-content">
+    <div class="header">
+        <h3>Claim History</h3>
+        <h3>Notifications and Alerts:</h3>
+        <div class="profile-icon">
+            <i class="fas fa-user-circle"></i> @* W3schools.com.2000. *@
+        </div>
+    </div>
+
+    <div class="chart-section"> @* W3schools.com.2000. *@
+        <div class="pie-chart">
+            <canvas id="myChart" width="200" height="200"></canvas>
+        </div>
+
+        <div class="calendar-section">
+            
+            <div class="calendar" id="calendar"></div>
+            <div>
+                <a href="@Url.Action("Index1", "SubmitClaim") " class="btn btn-primary btn-submit"> Submit Claim</a> @* W3schools.com.2000. *@
+            </div>
+        </div>
+    </div>
+
+    <div class="claims-section">
+        <table class="table table-striped"> @* W3schools.com.2000. *@
+            <thead>
+                <tr>
+                    <th>ClaimID</th>
+                    <th>Monthly Rate</th>
+                    <th>Miscellaneous Expenses</th>
+                    <th>Payment Method</th>
+                    <th>Date Submitted</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in Model) @* W3schools.com.2000. *@
+                {
+                    <tr>
+                        <td>@claim.ClaimID</td>
+                        <td>@claim.MonthlyRate</td>
+                        <td>@claim.MiscellaneousExpenses</td>
+                        <td>@claim.PaymentMethod</td>
+                        <td>@claim.SubmittedAt.ToString("dd/MM/yyyy")</td>
+                        <td class="@claim.Status.ToLower()">@claim.Status</td> @* W3schools.com.2000. *@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@* W3schools.com.2000. *@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var pendingCount = @ViewBag.PendingCount;
+    var acceptedCount = @ViewBag.AcceptedCount;
+    var rejectedCount = @ViewBag.RejectedCount;
+
+    var ctx = document.getElementById('myChart').getContext('2d'); @* W3schools.com.2000. *@
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Accepted', 'Pending', 'Rejected'],
+            datasets: [{
+                data: [acceptedCount, pendingCount, rejectedCount],
+                backgroundColor: ['#28a745', '#ffc107', '#ff0000'], // Accepted (green), Pending (red), Rejected (yellow)
+
+            }]
+        },
+        options: {
+            responsive: false,
+        }
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#calendar').fullCalendar({
+            
+        });
+    });
+</script>
+
+<style> @* W3schools.com.2000. *@
+    .dashboard-content {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .chart-section {
+        display: flex; @* W3schools.com.2000. *@
+        align-items: flex-start; 
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .pie-chart {
+        width: 200px;
+        height: 200px; @* W3schools.com.2000. *@
+    }
+
+    .calendar-section {
+        width: 200px; 
+        text-align: center; 
+    }
+
+    .calendar {
+        max-width: 100%; @* W3schools.com.2000. *@
+        height: 200px; 
+        margin: 40px auto; 
+    }
+
+    .btn-submit {
+        margin-top: 10px; 
+    }
+
+    .claims-section {
+        margin-top: 20px; @* W3schools.com.2000. *@
+    }
+
+    .table th, .table td {
+        text-align: center;
+    }
+
+    .pending {
+        color: yellow; @* W3schools.com.2000. *@
+    }
+
+    .accepted {
+        color: green;
+    }
+
+    .rejected {
+        color: red;
+    }
+</style>
+@* @*  W3schools.com.2000. Asp.net web pages tutorial. Available at: https://w3schools.com/asp/webpages_intro.asp (Accessed:6 October 2024).
+ *@
+@*  W3schools.com.2000. HTML styles Available at: https://www.w3schools.com/html/html_styles.asp (Accessed:5 October  2024).
+ *@

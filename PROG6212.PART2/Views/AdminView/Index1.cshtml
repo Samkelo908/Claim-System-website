@@ -1,0 +1,182 @@
+﻿@model List<PROG6212.PART2.Models.ViewClaimModel>
+
+
+    <style>
+        
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+.table-custom {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.table-custom th, 
+.table-custom td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px;
+}
+
+.table-custom th {
+    background-color: #343a40;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.table-custom td {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.table-custom tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+
+.badge {
+    padding: 0.5em 1em;
+    font-size: 0.9rem;
+    border-radius: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.badge-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+
+.form-inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-dropdown {
+    width: auto;
+    min-width: 120px;
+    padding: 5px;
+    font-size: 0.9rem;
+}
+
+.update-button {
+    margin-left: 10px;
+}
+
+/* Button styles */
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+
+
+
+    .status-dropdown {
+        min-width: 100px;
+    }
+
+    .update-button {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
+
+    </style>
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Manage Claims</h2> @* W3schools.com.2000. *@
+        </div>
+        <div class="card-body">
+            <table class="table table-custom table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Claimer ID</th>
+                        <th>Total Amount</th>
+                        <th>Miscellaneous Expenses</th> @* W3schools.com.2000. *@
+                        <th>Start Date</th>
+
+                        <th>Payment Method</th> @* W3schools.com.2000. *@
+                        <th>Submitted At</th>
+                        <th>Status</th>
+                        <th>Update Status</th> @* W3schools.com.2000. *@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var claim in Model)
+                    {
+                        <tr>
+                            <td>@string.Format("{0:C}", claim.ClaimID)</td>
+                            <td>@string.Format("{0:C}", claim.MonthlyRate)</td>
+                            <td>@string.Format("{0:C}", claim.MiscellaneousExpenses)</td>
+                            <td>@claim.DateRangeStart.ToString("yyyy-MM-dd")</td>
+                         
+                            <td>@claim.PaymentMethod</td>
+                            <td>@claim.SubmittedAt.ToString("yyyy-MM-dd")</td> @* W3schools.com.2000. *@
+                            <td>
+                                <span class="badge
+                                    @(claim.Status == "Accepted" ? "badge-success" :
+                                      claim.Status == "Rejected" ? "badge-danger" : "badge-warning")">
+                                    @* W3schools.com.2000. *@
+                                    @claim.Status
+                                </span>
+                            </td>
+                            <td>
+                                <form asp-action="UpdateClaimStatus" method="post" class="form-inline">
+                                    <input type="hidden" name="claimID" value="@claim.ClaimID" /> @* W3schools.com.2000. *@
+                                    @Html.DropDownList(
+                                             "SelectedStatus",
+                                             new SelectList(new List<string> { "Pending", "Accepted", "Rejected" }, claim.Status),
+                                             new { @class = "form-control status-dropdown mr-2" }
+                                             )
+                                    <button type="submit" class="btn btn-outline-primary btn-sm update-button">Update</button> @* W3schools.com.2000. *@
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@* @*  W3schools.com.2000. Asp.net web pages tutorial. Available at: https://w3schools.com/asp/webpages_intro.asp (Accessed:5 October 2024).
+ *@
+@*  W3schools.com.2000. HTML styles Available at: https://www.w3schools.com/html/html_styles.asp (Accessed:6 October 2024).
+ *@

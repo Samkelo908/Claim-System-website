@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> @* W3schools.com.2000. *@
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    button {
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    @* W3schools.com.2000. *@
+    }
+
+        button:hover {
+            background-color: orange;
+        }
+
+    .center-content {
+        text-align: center;
+    }
+
+        .center-content h1 {
+            font-size: 3rem;
+            color: black;
+            font-weight: bold;
+        }
+
+        .center-content h2 {
+            font-size: 2.5rem;
+            color: orange;
+            font-weight: bold;
+        } @* W3schools.com.2000. *@
+
+    .top-buttons {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+        .top-buttons a {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+            border: none;
+        } @* W3schools.com.2000. *@
+
+    .claim-button {
+        margin-top: 50px;
+    }
+
+        .claim-button a {
+            padding: 15px 40px;
+            background-color: black;
+            color: white;
+            font-size: 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .claim-button a:hover {
+                background-color: orange;
+            }
+</style>
+
+<div class="top-buttons">
+    <a href="@Url.Action("SignUp", "Account")">Sign Up</a>
+    <a href="@Url.Action("Login", "Account")">Login</a>
+</div>
+
+<div class="center-content">
+    <h1>Welcome to the</h1>
+    <h2>Claim System</h2> @* W3schools.com.2000. *@
+
+    <div class="claim-button">
+        <a href="@Url.Action("Index1", "Dashboard")">Claim</a> @* W3schools.com.2000. *@
+    </div>
+</div>
+@* @*  W3schools.com.2000. Asp.net web pages tutorial. Available at: https://w3schools.com/asp/webpages_intro.asp (Accessed:5 October 2024).
+ *@
+
+@*  W3schools.com.2000. HTML styles Available at: https://www.w3schools.com/html/html_styles.asp (Accessed: October 17, 2024).
+ *@
